@@ -1,80 +1,27 @@
 ---
 title: "Quickstart"
-description: "Start building awesome documentation in minutes"
 ---
 
-## Get started in three steps
+### What is a price ladder?
 
-Get your documentation site running locally and make your first customization.
+A price ladder, often called "Depth of Market" or "Order Book", is a real-time visual representation of supply and demand for a specific financial instrument (like a stock, currency, or commodity). It doesn't just show the current price, but also the prices at which traders are willing to buy (demand) and sell (offer), along with the corresponding quantities.
 
-### Step 1: Set up your local environment
+## Key components
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+At the center of the ladder, you'll see a column of prices. These prices are typically spaced by the "tick size" (the smallest possible price movement for that instrument).
 
-### Step 2: Deploy your changes
+To the left of the price column (often in blue), you'll find pending buy orders, known as "Bids". The "Bid Price" is the maximum price a buyer is currently willing to pay. As you move down this column, bid prices get lower. The "Bid Size/Volume" is the number of units (shares, contracts, lots) that buyers are willing to purchase at that specific price. These bids represent the existing demand in the market - these are the units waiting to be bought.
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+To the right of the price column (often in red), you'll find pending sell orders, known as "Asks". The "Ask Price" is the minimum price a seller is currently willing to accept. As you move up this column, ask prices get higher. The "Ask Size/Volume" is the number of units that sellers are willing to sell at that specific price. These asks represent the existing supply in the market - these are the units waiting to be sold.
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+The difference between the highest bid price (the best buy price) and the lowest ask price (the best sell price) is called the "Spread". This is the implicit cost of an instant transaction.
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+## How information updates
 
-### Step 3: Go live
+The price ladder is dynamic and updates in real time with every new order or order cancellation:
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+When a trader places a limit order (e.g., a buy limit order to pay 107 on 3 units), the quantity at that price on the "bid" side increases by 3. The same applies for a sell limit order. If a trader cancels a pending limit order, the corresponding quantity on the price ladder decreases.
 
-## Next steps
+To understand how a trade occurs, let's take a simple example on the price ladder. Imagine that the best sell price (ask) is at 109 for 5 units, and the best buy price (bid) is at 107 for 3 units. The last traded price is currently 107. If a buyer places a new limit buy order at 109 for 3 units, this order will directly match with a portion of the 5 units offered at 109. The transaction then occurs at 109. Immediately after this transaction, the last traded price updates to 109, and the quantity of units available at 109 on the offer side decreases, going from 5 to 2. The price ladder thus reflects this change in real-time.
 
-Now that you have your docs running, explore these key features:
-
-<CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
-</CardGroup>
-
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+In short, the price ladder shows you, at any given moment, where buyers and sellers are located, and how many units they are willing to trade at each price level, offering you an instant and detailed view of market dynamics.
