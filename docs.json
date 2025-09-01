@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Avenir",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#7ca6c7",
+    "light": "#7ca6c7",
+    "dark": "#0e1116"
   },
   "favicon": "/favicon.svg",
   "navigation": {
